@@ -1,5 +1,4 @@
-#Inspired from Hough Transform notebook by 
-#
+#Inspired/copied from Hough Transform notebook by David Rousseau & Mikhhail Hushchyn  
 #%matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
