@@ -5,8 +5,11 @@
 from trackml.dataset import load_event, load_dataset
 from trackml.score import score_event
 
-from sklearn.cluster.dbscan_ import dbscan
+from sklearn.cluster import DBSCAN
+from sklearn import metrics
+from sklearn.datasets.samples_generator import make_blobs
 from sklearn.preprocessing import StandardScaler
+
 
 import numpy as np
 import pandas as pd
