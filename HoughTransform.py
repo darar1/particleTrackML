@@ -183,4 +183,26 @@ for event_id, hits, cells, particles, truth in load_dataset(path_to_train, skip=
     print("Score for event %d: %.3f" % (event_id, score))
     
 print('Mean score: %.3f' % (np.mean(dataset_scores)))
+#Submission output 
+path_to_test = "../input/test"
+test_dataset_submissions = []
+
+create_submission = False # True for submission 
+
+if create_submission:
+    for event_id, hits, cells in load_dataset(path_to_test, parts=['hits', 'cells']):
+
+        # Track pattern recognition
+        model = Clusterer(N_bins_r0inv=200, N_bins_gamma=500, N_theta=500, min_hits=9)
+        labels = model.predict(hits)
+
+        # Prepare submission for an event
+        one_submission = create_one_event_submission(event_id, hits, labels)
+        test_dataset_submissions.append(one_submission)
+        
+        print('Event ID: ', event_id)
+
+    # Create submission file
+    submission = pd.concat(test_dataset_submissions, axis=0)
+    submission.to_csv('submission.csv.gz', index=False, compression='gzip')
 
